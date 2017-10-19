@@ -2,15 +2,16 @@
  * @Author: roc
  * @Date:   2017-10-18 20:26:06
  * @Last Modified by:   roc
- * @Last Modified time: 2017-10-18 21:39:58
+ * @Last Modified time: 2017-10-19 09:14:43
  */
 
 define([
     "jquery",
     "text!tpl/teacherListTpl.html",
-    "art"
+    "art",
+    "teacher/teacherShow"
 
-], function($, teacherListTpl, art) {
+], function($, teacherListTpl, art, teacherShow) {
 
     return function() {
 
@@ -20,12 +21,17 @@ define([
             url: "/api/teacher",
             type: "get",
             success: function(res) {
-                console.log(res);
                 if (res.code != 200) throw new Error(res.msg);
 
                 var html = art.render(teacherListTpl, res.result);
 
-                $('.main').html(html);
+                var $panel = $(html);
+
+                $panel.on('click', '.btn-show', function() {
+                    teacherShow();
+                });
+
+                $('.main').html($panel);
             }
         });
 

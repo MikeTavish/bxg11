@@ -2,7 +2,7 @@
  * @Author: roc
  * @Date:   2017-10-18 16:31:54
  * @Last Modified by:   roc
- * @Last Modified time: 2017-10-18 20:59:35
+ * @Last Modified time: 2017-10-19 08:54:02
  */
 require.config({
     baseUrl: "js",
@@ -22,14 +22,13 @@ require.config({
     }
 });
 
-require(["jquery","teacher/teacherList"], function($,teacherList) {
+require(["jquery", "teacher/teacherList"], function($, teacherList) {
     $('.list-group').on('click', 'a', function() {
         var $item = $(this).attr('item');
-        console.log($item);
 
         switch ($item) {
             case "teacher":
-                console.log(teacherList());
+                teacherList();
                 break;
             case "course":
                 $('.main').html("课程管理");
